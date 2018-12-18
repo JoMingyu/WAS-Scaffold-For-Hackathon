@@ -1,6 +1,7 @@
 from flask import request
 from flask_restful import Resource
 
+from app.decorators.db_session_manager import wrap_session
 from app.decorators.json_validator import validate_with_jsonschema
 
 
@@ -18,7 +19,8 @@ class Sample(Resource):
             }
         }
     })
-    def post(self):
+    @wrap_session()
+    def post(self, session):
         payload = request.json
 
         return payload, 201

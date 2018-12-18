@@ -25,11 +25,11 @@ def wrap_session(engine=None):
     if engine is None:
         engine = db_master_engine
 
-    def decorator(f):
-        @wraps
-        def wrapper(cls, *args, **kwargs):
+    def decorator(fn):
+        @wraps(fn)
+        def wrapper(self, *args, **kwargs):
             with _session_scope(engine) as session:
-                result = f(cls, session, *args, **kwargs)
+                result = fn(self, session, *args, **kwargs)
 
                 if hasattr(result, '_sa_instance_state'):
                     session.expunge(result)
