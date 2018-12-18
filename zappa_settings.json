@@ -1,0 +1,16 @@
+{
+    "base": {
+        "project_name": "..",
+        "profile_name": "default",
+        "aws_region": "ap-northeast-2",
+        "app_function": "lambda_app.application",
+        "runtime": "python3.6",
+        "cors": true
+    },
+    "production": {
+        "extends": "base",
+        "s3_bucket": "..",
+        "apigateway_description": "..",
+        "lambda_description": ".."
+    }
+}
