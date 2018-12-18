@@ -1,6 +1,12 @@
 import os
 from datetime import timedelta
 
+_DB_HOST_FORMAT = 'mysql_pymysql://{username}:{password}@{host}/{dbname}?charset=utf8mb4'
+
+
+def _build_db_host(username, password, host, dbname):
+    return _DB_HOST_FORMAT.format(username, password, host, dbname)
+
 
 class Config:
     RUN_SETTING = {
@@ -18,8 +24,12 @@ class Config:
 
 
 class LocalDBConfig:
-    pass
+    DB_HOSTS = {
+        'master': _build_db_host('', '', '', '')
+    }
 
 
 class RemoteDBConfig:
-    pass
+    DB_HOSTS = {
+        'master': _build_db_host('', '', '', '')
+    }
