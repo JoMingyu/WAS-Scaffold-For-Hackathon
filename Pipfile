@@ -12,6 +12,7 @@ jsonschema = "*"
 sqlalchemy = "*"
 termcolor = "*"
 pymysql = "*"
+zappa = "*"
 
 [dev-packages]
 
