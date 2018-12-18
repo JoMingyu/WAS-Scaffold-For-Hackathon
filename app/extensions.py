@@ -1,5 +1,6 @@
 from flask_jwt_extended import JWTManager
-from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.engine.base import Engine
 
 jwt = JWTManager()
-alchemy = SQLAlchemy()
+db_master_engine: Engine = None
+db_slave_engine: Engine = None

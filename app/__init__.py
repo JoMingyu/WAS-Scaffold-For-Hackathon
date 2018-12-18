@@ -1,4 +1,5 @@
 from flask import Flask
+from sqlalchemy import create_engine
 from werkzeug.exceptions import HTTPException
 
 from app.misc.log import log
@@ -8,7 +9,8 @@ def register_extensions(flask_app: Flask):
     from app import extensions
 
     extensions.jwt.init_app(flask_app)
-    extensions.alchemy.init_app(flask_app)
+    extensions.db_master_engine = create_engine(flask_app.config['DB_HOSTS']['master'])
+    # extensions.db_slave_engine = ...
 
 
 def register_views(flask_app: Flask):
